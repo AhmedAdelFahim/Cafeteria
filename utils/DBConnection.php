@@ -28,4 +28,5 @@ use PDO;
         public static function disconnect(){
             self::$instance=null;
         }
+
     }
