@@ -8,7 +8,15 @@
 </head>
 
 <body id="main_body">
+    <?php
+        require_once("Models/Product.php"); 
+        require_once("Models/User.php");
+        $product = new Product;
+        $user = new User;
 
+        $products = $product->All();
+        $users = $user->All();
+    ?>
     <div id="container">
         <div class="title">
             <div class="menu">
@@ -85,10 +93,13 @@
 
                                 <td> 
                                     <select id="allUsers">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="mercedes">Mercedes</option>
-                                        <option value="audi">Audi</option>
+                                        <?php
+                                            foreach($users as $user) {
+                                        ?>
+                                        <option value="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
+                                        <?php
+                                            }
+                                        ?>
                                     </select>    
                                 </td>
                             </tr>
@@ -96,22 +107,16 @@
                     </form>
                     <div id="separator"></div>
                     <div class="products">
+                        <?php 
+                            foreach($products as $product){
+                        ?>
                         <div class="product">
                             <img src="Assets/coffee.png"/>
-                            <h4>Product name</h4>
+                            <h4><?php echo $product->name; ?></h4>
                         </div>
-                        <div class="product">
-                            <img src="Assets/coffee.png"/>
-                            <h4>Product name</h4>
-                        </div>
-                        <div class="product">
-                            <img src="Assets/coffee.png"/>
-                            <h4>Product name</h4>
-                        </div>
-                        <div class="product">
-                            <img src="Assets/coffee.png"/>
-                            <h4>Product name</h4>
-                        </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
