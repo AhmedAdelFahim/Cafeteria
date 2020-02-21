@@ -64,8 +64,12 @@
     margin-left: 10px;
 }
   
-td {
+.nav td {
     padding: 10px 0;
+}
+
+.notes td {
+    padding: 0;
 }
 
 #allProductsContainer {
@@ -113,6 +117,10 @@ td {
     flex-direction: column;
     margin-left: 10px;
     margin-top: 3rem;
+}
+
+.product:hover {
+    cursor: pointer;
 }
 
 .product img {
