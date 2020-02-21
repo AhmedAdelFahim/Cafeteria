@@ -22,7 +22,7 @@
 
          if(isset($_FILES['Product_Picture'])){
          $errors= array();  
-         // var_dump($_FILES);
+
          
          $file_name = $_FILES['Product_Picture']['name'];
          $file_size =$_FILES['Product_Picture']['size'];
@@ -42,7 +42,7 @@
              echo "size";
          }
          if(empty($errors)==true){
-         // var_dump($_POST);
+         
          try{
          $db=new PDO ($dsn,$user,$password);
          
@@ -59,16 +59,13 @@
          
          if(empty($errors)==true){
              $path="/var/www/html/".$file_name;
-             // move_uploaded_file($file_tmp,"/var/www/html/".$file_name)
-             // fwrite($filesave, "File Upload Success");
+             
 
          }
          $query="INSERT INTO products (`name`, price, `picture`,category_id) VALUES (?,?,?,?)";     
          $stmt=$db->prepare($query);
          $stmt->execute([$productname,$price,$path,$categoryid]);
          $result=$stmt->fetchAll();
-         // var_dump($result);
-         // echo $result."<br>";
          $result->free_result();  
     }
     catch(PDOException $e){
