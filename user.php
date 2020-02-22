@@ -1,7 +1,16 @@
 <?php
+require_once("utils/DBConnection.php") ;
 $name  = $email = $passwordTxt = $cPassword = $roomNo = $EXT = $profileImg = "" ;
 /*$errName  = $errEmail = $errPasswordTxt = $errCPassword = $errRoom = $errEXT= $errProfileImg = "" ;*/
 
+function addUser()
+{
+    $db = \database_connection\DBConnection::getInstance() ;
+    $insertQuery = "insert into users(name , email , password , roomNo , ext , picture , privilege , created_at , updated_at) values (? , ? , ? , ? , ? , ? , ? , ? , ?)" ;
+    $stmt = $db->prepare($insertQuery) ;
+    $stmt->execute([$name , $email , $passwordTxt , $roomNo , $EXT , "files/".$_FILES['profil']['name'] , 1 , time() , time()]) ;
+
+}
 if( $_SERVER["REQUEST_METHOD"] == "POST")
 { 
     if(isset($_POST["name"]))
@@ -64,14 +73,5 @@ if( $_SERVER["REQUEST_METHOD"] == "POST")
 }
 if($errName="" && $errEmail="" && $errPasswordTxt="" && $errCPassword="" && $errRoom="" && $errProfileImg = "")
 {
-    require_once("utils/DBConnection.php") ;
-    function addUser()
-    {
-        $db = \database_connection\DBConnection::getInstance() ;
-        $insertQuery = "insert into users(name , email , password , roomNo , ext , picture , privilege , created_at , updated_at) values (? , ? , ? , ? , ? , ? , ? , ? , ?)" ;
-        $stmt = $db->prepare($insertQuery) ;
-        $stmt->execute([$name , $email , $passwordTxt , $roomNo , $EXT , "files/".$_FILES['profil']['name'] , 1 , time() , time()]) ;
-       
-    } 
     addUser() ;
 }

@@ -8,6 +8,7 @@
 </head>
 
 <body id="main_body">
+
     <?php
         require_once("Models/Product.php"); 
         require_once("Models/User.php");
