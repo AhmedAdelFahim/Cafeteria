@@ -10,12 +10,16 @@
     <?php
         require_once("Models/Product.php");
         require_once("Models/User.php");
+        require_once("Models/Order.php");
         $product = new Product;
         $user = new User;
         $products = $product->All();
         $userId = 1;
         $userData = $user->getUserById(1);
         $userName = $userData->name;
+        $order = new Order();
+        $orders = $order->getLastOrder($userId);
+//        var_dump($orders);
     ?>
     <header id="nav">
         <div id="links">
@@ -73,6 +77,17 @@
         <div id="products-orders-container">
             <div><h3>Latest Orders</h3></div>
             <div id="latest-orders">
+                <?php
+                foreach ($orders as $order) {
+                    ?>
+                    <div class="card">
+                        <div class="card-header"><h1><?php echo $order->name; ?></h1></div>
+                        <div ><img class="card-image"  src="public/img/tea.png"/></div>
+                        <div class="card-body"><h4 class="display-inline">Total: </h4></h4><h4 class="display-inline"><?php echo $order->total_price; ?> </h4><h4 class="display-inline">$</h4></div>
+                    </div>
+                    <?php
+                }
+                ?>
                 <!--<div class="card">
                     <div class="card-header"><h1>Tea</h1></div>
                     <div ><img class="card-image"  src="public/img/tea.png"/></div>

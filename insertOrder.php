@@ -1,7 +1,5 @@
 <?php
 require_once ("utils/DBConnection.php");
-//var_dump($_POST["products"]);
-//var_dump(json_decode($_POST["products"],true));
 foreach (json_decode($_POST["products"],true) as $product){
         echo $product["id"] ." => ".$product["value"]."\n";
 }
@@ -27,7 +25,6 @@ function insert($status = 0 , $total_price , $notes,$products)
                 $stmt->execute([$userId,$product["id"],$orderId,$price*$product["value"],$product["value"]]);
         }
         $result = $stmt->rowCount();
-//        $result=0;
         if($result>0)
         {
 //            $db.commit();
@@ -36,7 +33,6 @@ function insert($status = 0 , $total_price , $notes,$products)
 //            $db->rollBack();
             return false;
         }
-//        return true;
     }else{
 //        $db->rollBack();
         return false;
