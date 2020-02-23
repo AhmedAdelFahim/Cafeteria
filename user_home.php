@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Home - User</title>
-    <link rel="stylesheet" href="public/css/user_home.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css">-->
+    <link rel="stylesheet" href="public/css/min_css.lass">
+    <link rel="stylesheet" href="public/css/user_home.css">
+
 </head>
 <body>
     <?php
@@ -21,31 +29,34 @@
         $orders = $order->getLastOrder($userId);
 //        var_dump($orders);
     ?>
-    <header id="nav">
-        <div id="links">
-            <table class="nav">
-                <td> <a href="user_home.php">Home | </a></td>
-                <td> <a href="">My Orders</a></td>
-            </table>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div id="profile-data">
+                    <img id="profile-picture" src="public/img/admin.png"/>
+                    <a href="">Admin</a>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="">My Orders</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <div id="profile-data">
-            <img id="profile-picture" src="public/img/admin.png"/>
-            <a href=""><?php echo $userName ?></a>
-        </div>
-    </header>
+    </nav>
 
-    <div class="container">
+    <div class="my-container">
 
         <div id="order-card">
             <form id="order-form">
                 <table>
                     <tbody id="order-card-body">
-                        <!--<tr>
-                            <td>Tea</td>
-                            <td><INPUT TYPE="NUMBER" MIN="0"  STEP="1" VALUE="0" SIZE="6"></td>
-                            <td>2 $</td>
-                            <td><button>X</button></td>
-                        </tr>-->
                         <tr>
                             <td colspan="4">
                                 <label>Notes:</label>
