@@ -3,6 +3,10 @@
 require 'utils/DBConnection.php';
 session_start();
 
+if (!isset($_SESSION['userEmail'])) {
+    $_SESSION['userEmail'] = $_POST['emailValue'];
+}
+
 try {
     $conn = database_connection\DBConnection::getInstance();
     $stmt = $conn->prepare('UPDATE users SET password = ? WHERE email = ?');
