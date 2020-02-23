@@ -1,4 +1,4 @@
-let saveBtn = document.getElementById("Save") ;
+let saveBtn = document.getElementById("save") ;
 saveBtn.addEventListener('click', function(event){
 event.preventDefault() ;
 validate() ;

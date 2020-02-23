@@ -13,8 +13,16 @@ class User {
         if(!empty(self::$db)){
             $stmt=self::$db->prepare("Select * FROM users");
             $stmt->execute();
-            $row = $stmt->fetchAll(PDO::FETCH_OBJ);
-            return $row;
+            $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $rows;
         }
+    }
+
+    function getUserById($id){
+        $db = \database_connection\DBConnection::getInstance();
+        $stmt=$db->prepare("Select * FROM users WHERE id=?");
+        $stmt->execute([$id]);
+        $user = $stmt->fetch(PDO::FETCH_OBJ);
+        return $user;
     }
 }
