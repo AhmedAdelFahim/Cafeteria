@@ -42,11 +42,16 @@ class ordersController {
 
     public function adminSaveOrder($products_id, $user_id, $notes, $prices)
     {
+        if(count($products_id) == 0){
+            return false;
+        }
+
         $order = new Order;
         
         foreach($products_id as $k => $product_id){
             $order->insert(NULL, $product_id , $user_id , $prices[$k] , $notes);
         }
         
+        return true;
     }
 }
