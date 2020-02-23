@@ -1,0 +1,71 @@
+.container      {
+    height: 100%;
+    width: 100%;
+    background-color: #F8F8FF;
+    border: solid 2px grey;
+}
+
+.headerName     {
+    text-align: center;
+    color:brown;
+    font-size: 50px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.emailLabel     {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+    margin-left: 250px;
+}
+
+.emailBox       {
+    width: 30%;
+    height: 6%;
+    margin-left: 60px;
+}
+
+.passLabel     {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+    margin-left: 210px;
+}
+
+.passBox       {
+    width: 30%;
+    height: 6%;
+    margin-left: 70px;
+}
+
+.confirmPassLabel      {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+    margin-left: 170px;
+}
+
+.confirmPassBox        {
+    width: 30%;
+    height: 6%;
+    margin-left: 40px;
+}
+
+.submitBox       {
+    width: 7%;
+    height: 7%;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
+    margin-left: 460px;
+}
+
+.submitBox:hover {
+    background-color: #E9967A;
+}
+
+::placeholder   {
+    color: brown;
+    opacity: 0.4;
+}
+
+.error          {
+    color: red;
+    margin-left: 450px;
+}
