@@ -12,6 +12,18 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
+.emailLabel     {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+    margin-left: 250px;
+}
+
+.emailBox       {
+    width: 30%;
+    height: 6%;
+    margin-left: 60px;
+}
+
 .passLabel     {
     font-family: 'Titillium Web', sans-serif;
     font-size: 20px;

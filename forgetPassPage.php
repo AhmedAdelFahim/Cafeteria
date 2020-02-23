@@ -9,9 +9,13 @@
         <div class="container">
             <h1 class="headerName">Cafeteria</h1>
             <form class="formBox" name="loginForm" action="updatePassword.php" method="post" enctype="">
+                <label class="emailLabel">Email</label>
+                <input type="email" value="" placeholder="Enter your email" name="emailValue" class="emailBox">
+                <br><br><br>
+
                 <label class="passLabel">New Password</label>
                 <input type="password" value="" placeholder="Enter new Password" name="passValue" class="passBox" id="passBox">
-                <br><br><br><br>
+                <br><br><br>
 
                 <label class="confirmPassLabel">Confirm new Password</label>
                 <input type="password" value="" placeholder="Confirm new Password" name="confirmPassValue" class="confirmPassBox" id="confirmPassBox">
