@@ -67,6 +67,6 @@ if($errName=="" && $errEmail=="" && $errPasswordTxt=="" && $errCPassword=="" && 
     $db = \database_connection\DBConnection::getInstance() ;
     $insertQuery = "insert into users(name , email , password , roomNo , ext , picture , privilege , `created_at` , `updated_at`) values (? , ? , ? , ? , ? , ? , ? , ? , ?)" ;
     $stmt = $db->prepare($insertQuery) ;
-    $stmt->execute([$name , $email , $passwordTxt , $roomNo , $EXT , "files/".$_FILES['profil']['name'] , 1 , NULL , NULL]) ;
+    $stmt->execute([$name , $email , $passwordTxt , $roomNo , $EXT , "upload/".$_FILES['profil']['name'] , 1 , NULL , NULL]) ;
  
 }
