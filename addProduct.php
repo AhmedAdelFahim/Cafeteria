@@ -21,13 +21,13 @@
                 </table>
             </div>
             <div class="header">
-                <h5 class="adminname"><i class="fas fa-user-tie user"></i>Admin</h5>
+                <h5 class="adminname"><img src="./Assets/admin.png" width='30px' height='30px' alt='img'>Admin</h5>
 
             </div>
         </div>
         <div  class="main">
         <h1 class="addproduct">Add Product</h1>
-        <form id="form" class="addproduct" method="POST" action="addProduct.php">
+        <form id="form" class="addproduct" method="POST" action="insert_product.php">
             <table class="list">
                 <tr>
 
@@ -77,16 +77,6 @@
         </form>
         </div>                        
     </div>
-    <style>
-        .error {
-            color: #FF0000;
-        }
-        .title {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-    </style>
     <script src = "addProduct.js"></script>
 </body>
 

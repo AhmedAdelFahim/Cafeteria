@@ -5,18 +5,13 @@
         $stmt=$db->prepare("Select * FROM categories");
         $stmt->execute();
         $rows = $stmt->fetchall(PDO::FETCH_ASSOC);
-        var_dump($rows);
-        // foreach ($stmt->fetchall() as $eman){
-        //     echo $eman['name'];
+        //var_dump($rows);
         return $rows;
         }
-        
-    // }
-    // getAllcategories();
-    // $category = [];
-    $category = getAllCategories();
-    foreach ($category as $eman){
+
+        $category = getAllCategories();
+        foreach ($category as $eman){
             echo $eman['name'];
-    }
+        }
     // var_dump($category);
 ?>

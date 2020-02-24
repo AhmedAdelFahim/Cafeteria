@@ -30,7 +30,7 @@
                 </table>
             </div>
             <div class="header">
-                <h5 class="adminname"><i class="fas fa-user-tie user"></i>Admin</h5>
+                <h5 class="adminname"><img src="./Assets/admin.png" width='30px' height='30px' alt='img'>Admin</h5>
 
             </div>
         </div>
@@ -54,7 +54,7 @@
           echo "<td>".$data['name']."</td> ";
           echo "<td>".$data['price']."</td>";
           echo "<td><img src=".$data['picture']." width='30px' height='30px' alt='img'></td>";
-          echo "<td><a href='' class='update'>Edit | </a><a href='' class='delete'>Delete</a></td>";
+          echo "<td><a href='updateProduct.php' class='update'>Edit | </a><a href='deleteProduct.php' class='delete'>Delete</a></td>";
           echo "</tr>";
         }
       ?>   

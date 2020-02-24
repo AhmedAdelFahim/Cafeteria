@@ -3,7 +3,7 @@
         <div class="form-group row">
             <label for="" class="offset-sm-1 col-sm-2 control-label">Category</label>
             <div class="col-sm-6">
-                <input class="form-control" type="text" name="category" placeholder="enter Category name" pattern="[a-zA-Z]{1,}" required/>
+                <input class="form-control" type="text" name="category" placeholder="enter Category name" required/>
             </div>
         </div>
             <div class="form-group text-center">
