@@ -6,4 +6,4 @@
 
     $conn->exec($sql);
 
-    header('location:allUsers.php');
+    header('location:allUsers.php?deleted=1');

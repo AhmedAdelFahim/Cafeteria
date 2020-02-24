@@ -7,4 +7,4 @@
     $stat = $conn->prepare($sql);
     $stat->execute([$_POST['name'], $_POST['email'], $_POST['pass'], $_POST['roomNo'], $_POST['ext'], 'upload/'.$_FILES['profil']['name'], 'user', $_GET['id']]);
 
-    header('location:allUsers.php');
+    header('location:allUsers.php?updated=1');

@@ -48,6 +48,10 @@ img               {
 .pag            {
     margin-left: 350px;
     margin-top: 270px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
 }
 
 th, td           {
@@ -67,4 +71,13 @@ tr:nth-child(even)  {
 
 tr:hover        {
     background-color: #ddd;
+}
+
+.updateNotificationDiv  {
+    width: 200px;
+    height: 40px;
+    background-color: burlywood;
+    text-align: center;
+    margin-right: 0px;
+    border-radius: 5px;
 }

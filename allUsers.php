@@ -76,19 +76,19 @@
                 }
             ?>
 
-            <div>
+        </div>
+
+        <div class="pag">
+            <div class="updateNotificationDiv" id="updateDiv">
                 <?php
                     if (isset($_GET['updated'])) {
                         if ($_GET['updated'] == 1) {
                             echo '<script src="public/js/updateNotification.js"></script>';
                         }
                     }
+
                 ?>
             </div>
-
-        </div>
-
-        <div class="pag">
             <ul class="pagination">
                 <li><a href="?pageno=1">First</a></li>
                 <li class="<?php if ($pageno <= 1) {
