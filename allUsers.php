@@ -7,6 +7,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <link href="public/css/allUsers.css" rel="stylesheet">
+    <style>
+        .usersTable     {
+            margin-top: -340px;
+            border: 1px solid black;
+        }
+
+        .pag            {
+            margin-left: 350px;
+            margin-top: 270px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        th, td           {
+            text-align: center;
+            height: 30px;
+            width:150px;
+            border: 1px solid #ddd;
+        }
+
+        th               {
+            background-color: lightgray;
+        }
+
+        tr:nth-child(even)  {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover        {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -69,7 +103,7 @@
                     $ID = $row['id'];
                     echo '<td>'.$row['name'].'</td>';
                     echo '<td>'.$row['roomNo'].'</td>';
-                    echo '<td>'.$row['picture'].'</td>';
+                    echo '<td><img src="'.$row['picture'].'" style="width:20px; height:20px;"></td>';
                     echo '<td>'.$row['ext'].'</td>';
                     echo "<td><a href='AddUser.php?operation=update&&id=$ID'> update | </a>
                         <a href='deleteUser.php?operation=delete&&id=$ID'> delete </a></td></tr>";
