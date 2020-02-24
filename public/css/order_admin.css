@@ -1,69 +1,4 @@
-#profile-picture {
-    width: 2rem;
-    height: 2rem;
 
-}
-
-body{margin: 0}
-
-#links{
-    display: inline-block;
-}
-
-#nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    height: 10vh;
-
-}
-
-#profile-data {
-    display: inline-block;
-    margin-right: 2rem;
-}
-
-
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.table-container{
-    width: 90vw;
-    display: flex;
-    justify-content: center;
-}
-table{
-    border: 2px black;
-
-}
-
-.orders-table td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-.orders-table tr:nth-child(even){background-color: #f2f2f2;}
-
-.orders-table tr:hover {background-color: #ddd;}
-
-.orders-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-right: 80px;
-    padding-left: 80px;
-    text-align: left;
-    background-color:cadetblue;
-    color: white;
-}
-
-body{
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
 
 .order-details-container{
     display: flex;
@@ -85,6 +20,7 @@ body{
 }
 
 .card-image{
+    margin-top: 2rem;
     width: 8vw;
     height: 12vh;
 }
@@ -94,5 +30,6 @@ body{
 }
 
 .card-body{
+    margin-top: 2rem;
     margin-bottom: 2rem;
 }
