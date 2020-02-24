@@ -16,6 +16,10 @@
 
 </head>
 <body>
+    <?php
+        require_once ("utils/check_authorization.php");
+        checkAuthorization("admin");
+    ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,9 +36,9 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="">Users</a></li>
+                    <li><a href="AllUsers.php">Users</a></li>
                     <li><a href="#">Products</a></li>
-                    <li><a href="#">Orders</a></li>
+                    <li><a href="ordersAdmin.php">Orders</a></li>
                     <li><a href="#">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

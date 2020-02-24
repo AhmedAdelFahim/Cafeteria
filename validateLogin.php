@@ -5,6 +5,8 @@
 // });
 require 'utils/DBConnection.php';
 session_start();
+//var_dump($_SESSION);
+//session_destroy();
 
 $_SESSION['userEmail'] = $_POST['emailValue'];
 $userPass = $_POST['passValue'];
@@ -21,10 +23,14 @@ try {
             $_SESSION['userName'] = $row['name'];
             $_SESSION['userId'] = $row['id'];
             echo $_SESSION['userName'].' '.$_SESSION['userId'];
+            header("Location: user_home.php");
+
         } elseif ($row['privilege'] == 'admin') {
             $_SESSION['adminName'] = $row['name'];
-            $_SESSION['adminId'] = $row['id'];
+            $_SESSION['userId'] = $row['id'];
             echo $_SESSION['adminName'].' '.$_SESSION['adminId'];
+            header("Location: createOrder.php");
+
         } else {
             echo 'Your data has not been completed yet';
         }
@@ -32,7 +38,7 @@ try {
     }
     if ($trueData == 0) {
         $_SESSION['errorMsg'] = '*Invalid Email OR Password!';
-        header('location:login.php');
+        header('location:Login.php');
     }
 } catch (Exception $e) {
     echo $e->getMessage();

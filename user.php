@@ -41,18 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $errors[] = 'file size must be excately 2 MB';
             }
             if (empty($errors === true)) {
-                move_uploaded_file($file_tmp, 'files/'.$file_name);
+                move_uploaded_file($file_tmp, 'upload/'.$file_name);
                 echo 'success'.'<br>';
             } else {
                 print_r($errors);
             }
         }
     }
+
+    header("Location: AddUser.php");
 }
 if ($errName == '' && $errEmail == '' && $errPasswordTxt == '' && $errCPassword == '' && $errRoom == '' && $errProfileImg == '') {
     $db = \database_connection\DBConnection::getInstance();
     $insertQuery = 'insert into users(name , email , password , roomNo , ext , picture , privilege , `created_at` ,
     `updated_at`) values (? , ? , ? , ? , ? , ? , ? , ? , ?)';
     $stmt = $db->prepare($insertQuery);
-    $stmt->execute([$name, $email, $passwordTxt, $roomNo, $EXT, 'upload/'.$_FILES['profil']['name'], 1, null, null]);
+    $stmt->execute([$name, $email, $passwordTxt, $roomNo, $EXT, 'upload/'.$_FILES['profil']['name'], 'user', null, null]);
 }

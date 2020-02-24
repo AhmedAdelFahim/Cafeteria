@@ -16,14 +16,18 @@
 </head>
 <body>
     <?php
+
         require_once("Models/Product.php");
         require_once("Models/User.php");
         require_once("Models/Order.php");
+        require_once ("utils/check_authorization.php");
+        checkAuthorization("user");
+//        session_start();
         $product = new Product;
         $user = new User;
         $products = $product->All();
-        $userId = 1;
-        $userData = $user->getUserById(1);
+        $userId = $_SESSION["userId"];
+        $userData = $user->getUserById($userId);
         $userName = $userData->name;
         $order = new Order();
         $orders = $order->getLastOrder($userId);
@@ -38,8 +42,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div id="profile-data">
-                    <img id="profile-picture" src="public/img/admin.png"/>
-                    <a href="">Admin</a>
+                    <img id="profile-picture" src="<?php echo $userData->picture; ?>"/>
+                    <a href=""><?php echo $userData->name; ?></a>
                 </div>
             </div>
             <div class="collapse navbar-collapse">
@@ -99,26 +103,6 @@
                     <?php
                 }
                 ?>
-                <!--<div class="card">
-                    <div class="card-header"><h1>Tea</h1></div>
-                    <div ><img class="card-image"  src="public/img/tea.png"/></div>
-                    <div class="card-body"><h4>3 $</h4></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h1>Tea</h1></div>
-                    <div ><img class="card-image"  src="public/img/tea.png"/></div>
-                    <div class="card-body"><h4>3 $</h4></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h1>Tea</h1></div>
-                    <div ><img class="card-image"  src="public/img/tea.png"/></div>
-                    <div class="card-body"><h4>3 $</h4></div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h1>Tea</h1></div>
-                    <div ><img class="card-image"  src="public/img/tea.png"/></div>
-                    <div class="card-body"><h4>3 $</h4></div>
-                </div>-->
             </div>
             <div>---------------------------------------------------------------------------------------------------------------------------------------------------------</div>
             <div id="all-products">

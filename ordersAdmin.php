@@ -15,8 +15,10 @@
 <body>
     <?php
     require_once("Models/Order.php");
+    require_once ("utils/check_authorization.php");
     $order = new Order();
     $orders = $order->getWaitedOrders();
+    checkAuthorization("admin");
     ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -33,10 +35,10 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="">Users</a></li>
+                    <li class="active"><a href="createOrder.php">Home</a></li>
+                    <li><a href="AllUsers.php">Users</a></li>
                     <li><a href="#">Products</a></li>
-                    <li><a href="#">Orders</a></li>
+                    <li><a href="ordersAdmin.php">Orders</a></li>
                     <li><a href="#">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

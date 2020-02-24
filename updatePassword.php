@@ -31,7 +31,7 @@ try {
 
     if ($stmt->execute([$_POST['passValue'], $_SESSION['userId']])) {
         $_SESSION['updateMsg'] = 'Your Password updated successfully';
-        header('location:login.php');
+        header('location:Login.php');
     }
 } catch (Exception $e) {
     echo $e->getMessage();
