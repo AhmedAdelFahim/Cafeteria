@@ -30,6 +30,10 @@
     width: 2rem;
 }
 
+.profilePic img:hover {
+    cursor: pointer;
+}
+
 #bodyContainer {
     display: flex;
     flex-direction: row;
@@ -132,4 +136,22 @@
 
 .product h4{
     text-align: center;
+}
+
+#selectedProds {
+    display: flex;
+    flex-direction: row;
+    height: 1.5rem;
+}
+
+#selectedProds span {
+    display: flex;
+    flex-direction: row;
+    width: 4rem;
+    padding: 1px;
+    margin: 1px;
+}
+
+#quantity {
+    display: inline;
 }

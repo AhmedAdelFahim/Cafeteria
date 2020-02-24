@@ -20,18 +20,14 @@
         $users = $user->All();
         $price = 0;
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['status']))
-        {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $order = new ordersController;
-            if($_GET['status'] == 'set'){
-                $order->adminSetOrders($_GET['id']);
-            }elseif($_GET['status'] == 'remove'){
-                $order->adminRemoveOrder($_GET['id']);
+
+            if(isset($_POST['products'])){
+                $order->adminSaveOrder($_POST['products'], $_POST['user'], $_POST['notes'], $_POST['price'] );
+            }else{
+                $error = "Please select a product";
             }
-            header("Location: http://127.0.0.1/Cafeteria/createOrder.php");
-        }elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $order = new ordersController;
-            $order->adminSaveOrder($_POST['products'], $_POST['user'], $_POST['notes'], $_POST['price'] );
         }
     ?>
     <div id="container">
@@ -52,31 +48,7 @@
         <div id="bodyContainer">
             <div id="formContainer">
                 <form id="form" class="addproduct" method="POST" action="">
-                    <table class="notes">
-                        <?php
-                        if(isset($_COOKIE['orders'])){
-                            $orders = explode(", " ,$_COOKIE['orders']);
- 
-                            foreach($products as $product){
-
-                                if(in_array($product->id,$orders)){
-                                    $price = $price + $product->price;
-                        ?>
-                                    <tr id="selectedProds">
-                                        <td><?php echo $product->name; ?></td>
-                                        <td><input type="number" name="quantity[]" id="quantity" value="1"><input type="hidden" name="products[]" value="<? echo $product->id ?>"><input type="hidden" name="price[]" value="<? echo $product->price; ?>"></td>
-                                        <td><h4>EGP <? echo $product->price ?></h4></td>
-                                        <td><button type="button" onclick="removeOrder(<? echo $product->id; ?>)">X</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><hr></td>
-                                    </tr>
-                        <?php
-                                }
-                            }
-                        }
-                        ?>
+                    <table class="notes" id="notes">
                         <tr>
 
                             <td> Notes </td>
@@ -108,7 +80,7 @@
 
                         <tr id="productpicture">
                             <td></td>
-                            <td id="price"><h4>EGP <? if(isset($price)){ echo $price; }else{ echo 0; } ?></h4></td>
+                            <td id="price"><h4 id="totalPrice">EGP <? if(isset($price)){ echo $price; }else{ echo 0; } ?></h4></td>
 
                         </tr>
 
@@ -151,8 +123,9 @@
                         <?php 
                             foreach($products as $product){
                         ?>
-                        <div class="product">
-                            <a href="createOrder.php?status=set&id=<?php echo $product->id; ?>"><img src="Assets/coffee.png"/></a>
+                        <div class="product selectProduct" data-id = "<? echo $product->id; ?>" data-name="<? echo $product->name; ?>" data-price="<? echo $product->price; ?>">
+                            <!-- <a href="createOrder.php?status=set&id=<?php echo $product->id; ?>"><img src="Assets/coffee.png"/></a> -->
+                            <img src="Assets/coffee.png"/>
                             <h4><?php echo $product->name; ?></h4>
                         </div>
                         <?php
@@ -171,11 +144,7 @@
         }
     </style>
     <script src="https://kit.fontawesome.com/20351afc5f.js" crossorigin="anonymous"></script>
-    <script>
-        function removeOrder(id) {
-            window.location.href = `createOrder.php/?status=remove&id=${id}`;
-        }
-    </script>
+    <script type="text/javascript" src="public/JS/createOrder.js"></script>
 </body>
 
 </html>

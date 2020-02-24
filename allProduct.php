@@ -1,12 +1,11 @@
 <?php
     require_once ("utils/DBConnection.php");
     $db = \database_connection\DBConnection::getInstance();
-    $query="SELECT user_id,username,email,room,profile_pic,ext FROM user;";
+    $query="SELECT `name`, price , picture FROM products;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll(); 
-    var_dump($result);
-    // echo $result;
+    // var_dump($result);
 ?>
 <!DOCTYPE html>
 
@@ -52,10 +51,10 @@
 
         foreach($result as $data){
           echo "<tr>";
-          echo "<td>".$data['productname']."</td> <td>".$data['price']."</td> <td><img src=".$data['product_Picture']." width='30px' height='30px' alt='img'></td>";
-          echo "<form action='' method='POST'>";
-          echo "<td><button class='update-btn' type='submit' name='data' value='".$data['product_id'].",".$data['price'].",".$data['product_picture']."'Edit</button></form>";
-          echo "<button class='del-btn' onclick='deleteUser(".$data['user_id'].")'>Delete</button></td>";
+          echo "<td>".$data['name']."</td> ";
+          echo "<td>".$data['price']."</td>";
+          echo "<td><img src=".$data['picture']." width='30px' height='30px' alt='img'></td>";
+          echo "<td><a href='' class='update'>Edit | </a><a href='' class='delete'>Delete</a></td>";
           echo "</tr>";
         }
       ?>   
