@@ -46,10 +46,11 @@
 
             <?php
             if (isset($_SESSION['errorMsg'])) {
-                echo '<br><br> <label style="color:red; margin-left: 400px;">'.$_SESSION['errorMsg'].'</label>';
+                echo ' <label style="color:red; ">'.$_SESSION['errorMsg'].'</label>';
                 unset($_SESSION['errorMsg']);
             }
             ?>
+<!--            <label style="color:red;">''</label>-->
             <div class="container-contact100-form-btn">
                 <div class="wrap-contact100-form-btn">
                     <div class="contact100-form-bgbtn"></div>
