@@ -38,7 +38,7 @@
 
         <div class="allUserDiv">
             <div class="address">
-                <p class="addUserLink"><a href="addUser.php">Add User</a></p>
+                <p class="addUserLink"><a href="AddUser.php">Add User</a></p>
 
                 <h1 class="headerName"> All Users</h1>
             </div>
@@ -71,36 +71,46 @@
                     echo '<td>'.$row['roomNo'].'</td>';
                     echo '<td>'.$row['picture'].'</td>';
                     echo '<td>'.$row['ext'].'</td>';
-                    echo "<td><a href='form.php?op=update&&id=$ID'>update | </a>
-                        <a href='delete.php?op=delete&&id=$ID'> delete</a></td></tr>";
+                    echo "<td><a href='AddUser.php?operation=update&&id=$ID'> update | </a>
+                        <a href='deleteUser.php?operation=delete&&id=$ID'> delete </a></td></tr>";
                 }
             ?>
+
+            <div>
+                <?php
+                    if (isset($_GET['updated'])) {
+                        if ($_GET['updated'] == 1) {
+                            echo '<script src="public/js/updateNotification.js"></script>';
+                        }
+                    }
+                ?>
+            </div>
 
         </div>
 
         <div class="pag">
-        <ul class="pagination">
-            <li><a href="?pageno=1">First</a></li>
-            <li class="<?php if ($pageno <= 1) {
-                echo 'disabled';
-            } ?>">
-                <a href="<?php if ($pageno <= 1) {
-                echo '#';
-            } else {
-                echo '?pageno='.($pageno - 1);
-            } ?>">Prev</a>
-            </li>
-            <li class="<?php if ($pageno >= $total_pages) {
-                echo 'disabled';
-            } ?>">
-                <a href="<?php if ($pageno >= $total_pages) {
-                echo '#';
-            } else {
-                echo '?pageno='.($pageno + 1);
-            } ?>">Next</a>
-            </li>
-            <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-        </ul>
+            <ul class="pagination">
+                <li><a href="?pageno=1">First</a></li>
+                <li class="<?php if ($pageno <= 1) {
+                    echo 'disabled';
+                } ?>">
+                    <a href="<?php if ($pageno <= 1) {
+                    echo '#';
+                } else {
+                    echo '?pageno='.($pageno - 1);
+                } ?>">Prev</a>
+                </li>
+                <li class="<?php if ($pageno >= $total_pages) {
+                    echo 'disabled';
+                } ?>">
+                    <a href="<?php if ($pageno >= $total_pages) {
+                    echo '#';
+                } else {
+                    echo '?pageno='.($pageno + 1);
+                } ?>">Next</a>
+                </li>
+                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+            </ul>
         </div>
 
     </div>
