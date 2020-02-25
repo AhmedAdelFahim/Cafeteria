@@ -66,4 +66,10 @@ a {
   padding-right:5px;
 }
 
+#categories-container{
+    display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+}
+
 
