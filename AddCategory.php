@@ -14,6 +14,10 @@
 </head>
 
 <body>
+<?php
+require_once ("utils/check_authorization.php");
+checkAuthorization("admin");
+?>
 <div class="container-contact100">
     <div class="wrap-contact100">
         <!--        <h1 class="headerName">Cafeteria</h1>-->

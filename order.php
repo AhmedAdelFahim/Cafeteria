@@ -34,14 +34,14 @@
             <a href = "Orders.html">My Orders</a>
         </div>
         <div class = "pic">
-       <img src = "admin.png"/> <span><?php  
+       <img src = "admin.png"/> <span><?php /*
            session_start();
            $quary = "SELECT name FROM users WHERE email=?" ;
            $stmt = $db->prepare($quary) ;
            $stmt->execute([$_SESSION['userEmail']]) ;
            $result = $stmt->fetchAll();
            print_r ($result) ;
-         ?> </span>
+         */?> </span>
         </div>
         </div>
         

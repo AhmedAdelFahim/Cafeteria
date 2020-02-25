@@ -16,9 +16,9 @@
     <?php
     require_once("Models/Order.php");
     require_once ("utils/check_authorization.php");
+    checkAuthorization("admin");
     $order = new Order();
     $orders = $order->getWaitedOrders();
-    checkAuthorization("admin");
     ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
