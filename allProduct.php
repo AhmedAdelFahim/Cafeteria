@@ -86,6 +86,61 @@
             </div>
         </div>
 
-    </div>         
+             
+        <?php
+            require_once ("utils/check_authorization.php");
+            // checkAuthorization("admin");
+
+            if (isset($_GET['pageno'])) {
+                $pageno = $_GET['pageno'];
+            } else {
+                $pageno = 1;
+            }
+            $no_of_records_per_page = 3;
+            $offset = ($pageno - 1) * $no_of_records_per_page;
+        ?>  
+
+        <div class="pag">
+            <!-- <div class="notificationDiv" id="notificationDiv">
+                <?php
+                // if (isset($_GET['updated'])) {
+                //     if ($_GET['updated'] == 1) {
+                //         echo '<script src="public/js/updateNotification.js"></script>';
+                //     }
+                // }
+
+                // if (isset($_GET['deleted'])) {
+                //     if ($_GET['deleted'] == 1) {
+                //         echo '<script src="public/js/deleteNotification.js"></script>';
+                //     }
+                // }
+
+                ?>
+            </div> -->
+            <ul class="pagination" style="margin-left:330px; margin-top:-110px;">
+                <li><a href="?pageno=1">First</a></li>
+                <li class="<?php if ($pageno <= 1) {
+                    echo 'disabled';
+                } ?>">
+                    <a href="<?php if ($pageno <= 1) {
+                        echo '#';
+                    } else {
+                        echo '?pageno='.($pageno - 1);
+                    } ?>">Prev</a>
+                </li>
+                <li class="<?php if ($pageno >= $total_pages) {
+                    echo 'disabled';
+                } ?>">
+                    <a href="<?php if ($pageno >= $total_pages) {
+                        echo '#';
+                    } else {
+                        echo '?pageno='.($pageno + 1);
+                    } ?>">Next</a>
+                </li>
+                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+            </ul>  
+        </div>
+
+    </div>    
 </body>
 </html>

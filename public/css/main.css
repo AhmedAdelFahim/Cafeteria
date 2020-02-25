@@ -296,14 +296,14 @@ tbody tr:hover {
 
   tbody tr {
     font-size: 14px;
-  }
+}
 }
 
 @media (max-width: 576px) {
-  .container-table100 {
+.container-table100 {
     padding-left: 15px;
     padding-right: 15px;
-  }
+}
 }
 
 .addUserDiv  {
@@ -314,7 +314,7 @@ tbody tr:hover {
 }
 
 .addProductDiv  {
-     width: 100px;
+    width: 100px;
     height: 10px;
     margin-left: 830px;
     padding: 0px;
