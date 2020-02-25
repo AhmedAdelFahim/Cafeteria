@@ -25,6 +25,7 @@
     }
     $no_of_records_per_page = 3;
     $offset = ($pageno - 1) * $no_of_records_per_page;
+
 ?>
 
 
@@ -74,10 +75,10 @@
                         echo '<tr class="table100-head">';
 //<!--                            <th>Order Date</th>-->
                             echo '<th>Name</th>
-                            <th>Room</th>
-                            <th>Image</th>
-                            <th>Ext.</th>
-                            <th>Action</th>';
+                                <th>Room</th>
+                                <th>Image</th>
+                                <th>Ext.</th>
+                                <th>Action</th>';
                             $stat = $conn->prepare('SELECT * FROM users WHERE privilege = "user"
                             LIMIT :offset, :num');
 
@@ -97,7 +98,7 @@
                             echo '<td><img src="'.$row['picture'].'" style="width:50px; height:50px;"></td>';
                             echo '<td>'.$row['ext'].'</td>';
                             echo "<td><a href='AddUser.php?operation=update&&id=$ID'> update | </a>
-                        <a href='deleteUser.php?operation=delete&&id=$ID'> delete </a></td></tr>";
+                                <a href='deleteUser.php?operation=delete&&id=$ID'> delete </a></td></tr>";
                         }
 
 
@@ -120,8 +121,8 @@
                 <ul class="pagination">
                     <li><a href="?pageno=1">First</a></li>
                     <li class="<?php if ($pageno <= 1) {
-                        echo 'disabled';
-                    } ?>">
+                            echo 'disabled';
+                        } ?>">
                         <a href="<?php if ($pageno <= 1) {
                             echo '#';
                         } else {
@@ -130,7 +131,7 @@
                     </li>
                     <li class="<?php if ($pageno >= $total_pages) {
                         echo 'disabled';
-                    } ?>">
+                        } ?>">
                         <a href="<?php if ($pageno >= $total_pages) {
                             echo '#';
                         } else {
