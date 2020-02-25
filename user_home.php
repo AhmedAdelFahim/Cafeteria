@@ -36,13 +36,13 @@
                 </button>
                 <div id="profile-data">
                     <img id="profile-picture" src="<?php echo $userData->picture; ?>"/>
-                    <a href=""><?php echo $userData->name; ?></a>
+                    <a href="user_home.php"><?php echo $userData->name; ?></a>
                 </div>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="user_home.php">Home</a></li>
-                    <li><a href="">My Orders</a></li>
+                    <li><a href="ordersUser.php?<?php echo "from=". date("Y-m-d",time()-604800)."&to=".date("Y-m-d",time()+604800) ?>">My Orders</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -97,7 +97,7 @@
                     ?>
                     <div class="card">
                         <div class="card-header"><h1><?php echo $order->name; ?></h1></div>
-                        <div ><img class="card-image"  src="public/img/tea.png"/></div>
+                        <div ><img class="card-image"  src="<?php echo $order->picture?>"/></div>
                         <div class="card-body"><h4 class="display-inline">Total: </h4></h4><h4 class="display-inline"><?php echo $order->total_price; ?> </h4><h4 class="display-inline">$</h4></div>
                     </div>
                     <?php
@@ -111,7 +111,7 @@
                 ?>
                 <div class="card" id="<?php echo $product->id ?>">
                     <div class="card-header"><h1><?php echo $product->name; ?></h1></div>
-                    <div ><img class="card-image"  src="public/img/tea.png"/></div>
+                    <div ><img class="card-image"  src="<?php echo $product->picture ?>"/></div>
                     <div class="card-body"><h4 class="display-inline"><?php echo $product->price; ?> </h4><h4 class="display-inline">$</h4></div>
                 </div>
                 <?php
