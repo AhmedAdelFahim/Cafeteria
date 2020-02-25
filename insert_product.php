@@ -3,7 +3,7 @@
         // var_dump($_POST);
         $productname = $_POST ["product_name"];
         $price = $_POST["price"];
-        $path = "upload/".$_POST["Product_Picture"];
+        $path = "upload/".$_FILES['Product_Picture']['name'];
         $categoryid = $_POST["category"];
         var_dump($_FILES);
         $file_name = $_FILES['Product_Picture']['name'];

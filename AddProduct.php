@@ -49,8 +49,28 @@
 
     <div class="container-contact100">
         <div class="wrap-contact100">
-            <!--        <h1 class="headerName">Cafeteria</h1>-->
-            <form class="contact100-form validate-form" method="POST" action="insert_product.php" enctype = "multipart/form-data">
+            <?php
+                $pageName = 'insert_product.php';
+                if (isset($_GET['operation'])) {
+                    if ($_GET['operation'] == 'update') {
+                        $pageName = 'updateProduct.php?id='.$_GET['id'];
+
+                        require_once 'utils/DBConnection.php';
+                        $conn = database_connection\DBConnection::getInstance();
+
+                        $stat = $conn->prepare('SELECT * FROM products WHERE id = ?');
+
+                        $stat->execute([$_GET['id']]);
+
+                        foreach($stat->fetchAll() as $result) {
+                            $nameValue = $result['name'];
+                            $priceValue = $result['price'];
+                        };
+
+                    }
+                }
+            ?>
+            <form class="contact100-form validate-form" method="POST" action=<?php echo $pageName; ?> enctype = "multipart/form-data">
 
                 <span class="contact100-form-title">
 					Add Product
@@ -60,13 +80,15 @@
 
                 <div class="wrap-input100 validate-input" data-validate = "Product Name is required">
                     <span class="label-input100">Product Name</span>
-                    <input id="product_name" name="product_name" class="input100" type="text" placeholder="Enter Product Name" maxlength="255" />
+                    <input id="product_name" name="product_name" class="input100" type="text" placeholder="Enter Product Name" 
+                    maxlength="255" <?php if(isset($nameValue)){ echo 'value='.$nameValue; } else {echo 'value=""';}?> />
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Invalid Price">
                     <span class="label-input100">Price</span>
-                    <td> <input name="price" id="price" class="input100" type="number" min="1" max="100" step="0.5" value="1" size="10">
+                    <td> <input name="price" id="price" class="input100" type="number" min="1" max="100" step="0.5" size="10"
+                        placeholder="Enter Product Name" <?php if(isset($priceValue)){ echo 'value='.$priceValue; } else {echo 'value=""';}?> >
                     <span class="focus-input100"></span>
                 </div>
 

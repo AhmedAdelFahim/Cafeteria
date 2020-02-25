@@ -97,13 +97,13 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 
-.limiter {
+.limiter1 {
   width: 100%;
   margin: 0 auto;
   margin-top:-70px;
 }
 
-.limiter1 {
+.limiter {
   width: 100%;
   margin: 0 auto;
 }

@@ -1,7 +1,7 @@
 <?php
     require_once ("utils/DBConnection.php");
     $db = \database_connection\DBConnection::getInstance();
-    $query="SELECT `name`, price , picture FROM products;";
+    $query="SELECT * FROM products;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll(); 
@@ -53,7 +53,7 @@
             <a href="AddProduct.php">Add-Product</a>
         </div>
 
-        <div class="limiter">
+        <div class="limiter1">
             <div class="container-table100">
                 <div class="wrap-table100">
                     <div class="table100">
@@ -70,13 +70,16 @@
                             <tbody>
                                 <?php
                                     foreach($result as $data){
-                                    echo "<tr>";
-                                    echo "<td>".$data['name']."</td> ";
-                                    echo "<td>".$data['price']."</td>";
-                                    echo "<td><img src=".$data['picture']." width='30px' height='30px' alt='img'></td>";
-                                    echo "<td><a href='updateProduct.php' class='update'>Edit | </a><a href='deleteProduct.php' class='delete'>Delete</a></td>";
-                                    echo "</tr>";
-                                }
+                                        $ID = $data['id'];
+
+                                        echo "<tr>";
+                                        echo "<td>".$data['name']."</td> ";
+                                        echo "<td>".$data['price']."</td>";
+                                        echo "<td><img src=".$data['picture']." width='50px' height='50px' alt='img'></td>";
+                                        echo "<td><a href='AddProduct.php?operation=update&&id=$ID' class='update'> Edit | </a>
+                                                <a href='deleteProduct.php' class='delete'>Delete</a></td>";
+                                        echo "</tr>";
+                                    }
                                 ?>   
                             </tbody>
 

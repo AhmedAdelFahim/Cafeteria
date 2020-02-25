@@ -59,7 +59,7 @@
         <a href="AddUser.php">Add-User</a>
     </div>
 
-    <div class="limiter1">
+    <div class="limiter">
         <div class="container-table100">
             <div class="wrap-table100">
 <!--        <h1>AAA</h1>-->
