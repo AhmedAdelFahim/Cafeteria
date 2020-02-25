@@ -1,7 +1,3 @@
-$(".add-category").click(function () {
-    window.location.href = "AddCategory.php";
-});
-
 
 (function ($) {
     "use strict";
@@ -23,30 +19,15 @@ $(".add-category").click(function () {
 
     /*==================================================================
     [ Validate ]*/
-    var productName = $('.validate-input input[name="product_name"]');
-    var price = $('.validate-input input[name="price"]');
     var category = $('.validate-input input[name="category"]');
-    var productPicture = $('.validate-input input[name="Product_Picture"]');
+
 
 
     $('.validate-form').on('submit',function(event){
         var check = true;
         // event.preventDefault()
-        if($(productName).val().trim().length === 0){
-            showValidate(productName);
-            check=false;
-        }
-
-        if (price === "") {
-            showValidate(price);
-            check=false;
-        }
-        if (category === "") {
+        if($(category).val().trim() == ''){
             showValidate(category);
-            check=false;
-        }
-        if (productPicture.val().trim().length === 0) {
-            showValidate(productPicture);
             check=false;
         }
 
