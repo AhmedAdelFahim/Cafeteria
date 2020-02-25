@@ -52,9 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: AddUser.php");
 }
 if ($errName == '' && $errEmail == '' && $errPasswordTxt == '' && $errCPassword == '' && $errRoom == '' && $errProfileImg == '') {
+    
+    $options = [
+        'cost' => 12
+      ];
+    $hash = password_hash($passwordTxt, PASSWORD_BCRYPT, $options);
+      
     $db = \database_connection\DBConnection::getInstance();
     $insertQuery = 'insert into users(name , email , password , roomNo , ext , picture , privilege , `created_at` ,
     `updated_at`) values (? , ? , ? , ? , ? , ? , ? , ? , ?)';
     $stmt = $db->prepare($insertQuery);
-    $stmt->execute([$name, $email, $passwordTxt, $roomNo, $EXT, 'upload/'.$_FILES['profil']['name'], 'user', null, null]);
+    $stmt->execute([$name, $email, $hash, $roomNo, $EXT, 'upload/'.$_FILES['profil']['name'], 'user', null, null]);
 }
