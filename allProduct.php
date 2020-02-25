@@ -37,7 +37,7 @@
     <div class="main">
     
         <h1 class="allProduct"> All Products </h1>
-        <a href="addProduct.php?">add product</a>  
+        <a href="AddProduct.php?">add product</a>
         <br>
     </div>
             <table class="table-header">

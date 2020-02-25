@@ -8,6 +8,6 @@
     $stmt = $db->prepare($query);
     $stmt->execute([$category,date("Y-m-d H:i:s")]);
     $result=$stmt->fetchAll();
-    header("Location: addProduct.php");
+    header("Location: AddProduct.php");
     }
 ?>
