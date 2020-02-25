@@ -37,7 +37,7 @@
     <div class="main">
     
         <h1 class="allProduct"> All Products </h1>
-        <a href="AddProduct.php?">add product</a>
+        <a href="addProduct.php?">add product</a>  
         <br>
     </div>
             <table class="table-header">
@@ -58,6 +58,40 @@
           echo "</tr>";
         }
       ?>   
-  </div>         
+  </div> 
+  <?php
+    require_once ("utils/check_authorization.php");
+    // checkAuthorization("admin");
+
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
+    $no_of_records_per_page = 3;
+    $offset = ($pageno - 1) * $no_of_records_per_page;
+?>  
+<ul class="pagination">
+                    <ui><a href="?pageno=1">First</a></ui>
+                    <ui class="<?php if ($pageno <= 1) {
+                        echo 'disabled';
+                    } ?>">
+                        <a href="<?php if ($pageno <= 1) {
+                            echo '#';
+                        } else {
+                            echo '?pageno='.($pageno - 1);
+                        } ?>">Prev</a>
+                    </ui>
+                    <ui class="<?php if ($pageno >= $total_pages) {
+                        echo 'disabled';
+                    } ?>">
+                        <a href="<?php if ($pageno >= $total_pages) {
+                            echo '#';
+                        } else {
+                            echo '?pageno='.($pageno + 1);
+                        } ?>">Next</a>
+                    </ui>
+                    <ui><a href="?pageno=<?php echo $total_pages; ?>">Last</a></ui>
+                </ul>      
 </body>
 </html>
