@@ -5,11 +5,6 @@
     <title>Home - User</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animsition/4.0.2/js/animsition.min.js">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css">-->
     <link rel="stylesheet" href="public/css/min_css.lass">
     <link rel="stylesheet" href="public/css/user_home.css">
 
@@ -22,7 +17,6 @@
         require_once("Models/Order.php");
         require_once ("utils/check_authorization.php");
         checkAuthorization("user");
-//        session_start();
         $product = new Product;
         $user = new User;
         $products = $product->All();
@@ -31,7 +25,6 @@
         $userName = $userData->name;
         $order = new Order();
         $orders = $order->getLastOrder($userId);
-//        var_dump($orders);
     ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -48,18 +41,20 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="user_home.php">Home</a></li>
                     <li><a href="">My Orders</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
 
+
+
     <div class="my-container">
 
         <div id="order-card">
             <form id="order-form">
-                <table>
+                <table >
                     <tbody id="order-card-body">
                         <tr>
                             <td colspan="4">
@@ -81,8 +76,8 @@
                             <td colspan="4"><h4 class="display-inline">Total : </h4><h4 class="display-inline" id="total">0</h4><h4 class="display-inline"> $</h4></td>
                         </tr>
                         <tr>
-                            <td colspan="4">
-                                <input type="submit" value="SUBMIT"/>
+                            <td colspan="4" >
+                                <input  type="submit" style="background-color: #222222; color: white;" class="btn" value="SUBMIT"/>
                             </td>
                         </tr>
                     </tbody>
@@ -90,7 +85,12 @@
             </form>
         </div>
         <div id="products-orders-container">
-            <div><h3>Latest Orders</h3></div>
+            <div class="notify-container"><h3 class="display-inline">Latest Orders</h3>
+                <div class="alert alert-danger alert-dismissible display-inline " role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Errors!</strong><p class="display-inline" id="alert-msg"></p>
+                </div>
+            </div>
             <div id="latest-orders">
                 <?php
                 foreach ($orders as $order) {
@@ -122,7 +122,9 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/6216855c1e.js"></script>
     <script src="public/js/user_home.js"></script>
 </body>
 </html>
