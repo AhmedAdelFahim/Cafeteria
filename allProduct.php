@@ -11,53 +11,81 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Product </title>
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <title>All-Products</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="public/css/util.css">
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+    <link rel="stylesheet" href="public/css/min_css.lass">
 </head>
 
 <body id="main-body">
-    
-
-    <div id="container">
-        <div class="title">
-            <div class="menu">
-                <table>
-                    <td> <a href="Home.php?">Home | </a></td>
-                    <td> <a href="Products.php?">Products | </a></td>
-                    <td> <a href="Users.php?">Users | </a></td>
-                    <td> <a href="ManualOrders.php?">Manual orders | </a></td>
-                    <td> <a href="Checks.php?">Checks </a></td>
-                </table>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div id="profile-data">
+                    <img id="profile-picture" src="public/img/admin.png"/>
+                    <a href="">Admin</a>
+                </div>
             </div>
-            <div class="header">
-                <h5 class="adminname"><img src="./Assets/admin.png" width='30px' height='30px' alt='img'>Admin</h5>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="active"><a href="createOrder.php">Home</a></li>
+                    <li><a href="AllUsers.php">Users</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="ordersAdmin.php">Orders</a></li>
+                    <li><a href="#">Checks</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
 
+    <div class="container">
+        <div class="addProductDiv">
+            <a href="AddProduct.php">Add-Product</a>
+        </div>
+
+        <div class="limiter">
+            <div class="container-table100">
+                <div class="wrap-table100">
+                    <div class="table100">
+                        <table>
+                            <thead>
+                                <tr class="table100-head">
+                                    <th> Product </th>    
+                                    <th> Price </th>    
+                                    <th> Image </th>    
+                                    <th> Action </th>    
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                    foreach($result as $data){
+                                    echo "<tr>";
+                                    echo "<td>".$data['name']."</td> ";
+                                    echo "<td>".$data['price']."</td>";
+                                    echo "<td><img src=".$data['picture']." width='30px' height='30px' alt='img'></td>";
+                                    echo "<td><a href='updateProduct.php' class='update'>Edit | </a><a href='deleteProduct.php' class='delete'>Delete</a></td>";
+                                    echo "</tr>";
+                                }
+                                ?>   
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    <div class="main">
-    
-        <h1 class="allProduct"> All Products </h1>
-        <a href="AddProduct.php?">add product</a>
-        <br>
-    </div>
-            <table class="table-header">
-                <tr>
-                <th> Product </th>    
-                <th> Price </th>    
-                <th> Image </th>    
-                <th> Action </th>    
-                </tr>
-    <?php
 
-        foreach($result as $data){
-          echo "<tr>";
-          echo "<td>".$data['name']."</td> ";
-          echo "<td>".$data['price']."</td>";
-          echo "<td><img src=".$data['picture']." width='30px' height='30px' alt='img'></td>";
-          echo "<td><a href='updateProduct.php' class='update'>Edit | </a><a href='deleteProduct.php' class='delete'>Delete</a></td>";
-          echo "</tr>";
-        }
-      ?>   
-  </div>         
+    </div>         
 </body>
 </html>

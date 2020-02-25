@@ -55,8 +55,11 @@
         </div>
     </nav>
 <div class="container">
+    <div class="addUserDiv">
+        <a href="AddUser.php">Add-User</a>
+    </div>
 
-    <div class="limiter">
+    <div class="limiter1">
         <div class="container-table100">
             <div class="wrap-table100">
 <!--        <h1>AAA</h1>-->
@@ -75,10 +78,10 @@
                         echo '<tr class="table100-head">';
 //<!--                            <th>Order Date</th>-->
                             echo '<th>Name</th>
-                                <th>Room</th>
-                                <th>Image</th>
-                                <th>Ext.</th>
-                                <th>Action</th>';
+                                    <th>Room</th>
+                                    <th>Image</th>
+                                    <th>Ext.</th>
+                                    <th>Action</th>';
                             $stat = $conn->prepare('SELECT * FROM users WHERE privilege = "user"
                             LIMIT :offset, :num');
 
@@ -108,11 +111,17 @@
                 </div>
             </div>
             <div class="pag">
-                <div class="updateNotificationDiv" id="updateDiv">
+                <div class="notificationDiv" id="notificationDiv">
                     <?php
                     if (isset($_GET['updated'])) {
                         if ($_GET['updated'] == 1) {
                             echo '<script src="public/js/updateNotification.js"></script>';
+                        }
+                    }
+
+                    if (isset($_GET['deleted'])) {
+                        if ($_GET['deleted'] == 1) {
+                            echo '<script src="public/js/deleteNotification.js"></script>';
                         }
                     }
 

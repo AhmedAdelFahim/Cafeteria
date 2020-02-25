@@ -100,6 +100,12 @@ iframe {
 .limiter {
   width: 100%;
   margin: 0 auto;
+  margin-top:-70px;
+}
+
+.limiter1 {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .container-table100 {
@@ -298,4 +304,18 @@ tbody tr:hover {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.addUserDiv  {
+    width: 100px;
+    height: 10px;
+    margin-left: 830px;
+    padding: 0px;
+}
+
+.addProductDiv  {
+     width: 100px;
+    height: 10px;
+    margin-left: 830px;
+    padding: 0px;
 }
