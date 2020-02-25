@@ -1,5 +1,7 @@
-$("#all-products").find(".card").click(function(e){
-    let row = $("<tr></tr>");
+$(".alert").hide();
+let cardHandler = function(e){
+    // console.log(e.currentTarget.id)
+    let row = $("<tr style='padding-bottom: 10px; padding-top: 10px; '></tr>");
     let nameTd = $("<td></td>").text($(this).find(".card-header:first-child").text())
     let numberTd = $("<td></td>");
 
@@ -8,7 +10,20 @@ $("#all-products").find(".card").click(function(e){
     priceTd.append(`<h4 class="display-inline">${priceStr}</h4>`)
     priceTd.append("<h4 class='display-inline'>$</h4>");
     let removeBtnTd = $("<td></td>")
-    let removeBtn = $("<button></button>").text("X");
+    let removeBtn = $(" <button type=\"button\" style=\"background-color: #222222; color: white\" class=\"btn btn-circle\"><i class=\"fa fa-times\"></i>\n" + "</button>");
+    // let removeBtn = $("<button></button>").text("X");
+    removeBtn.click(function (event) {
+        // console.log($(this).parent().parent().find("td")[2].firstChild.textContent);
+        $("#total").text(Number($("#total").text()) - Number($(this).parent().parent().find("td")[2].firstChild.textContent));
+        $(this).parent().parent().remove();
+        // console.log($("#all-products").find(".card")[0].id);
+        for(let i = 0; i< $("#all-products").find(".card").length;++i){
+            if($("#all-products").find(".card")[i].id === e.currentTarget.id){
+                // console.log($(`#all-products > #${e.currentTarget.id}`));
+                $(`#all-products > #${e.currentTarget.id}`).bind('click',cardHandler);
+            }
+        }
+    })
     removeBtnTd.append(removeBtn);
     let numberInput = $("<input />").attr({
         type:"number",
@@ -28,7 +43,8 @@ $("#all-products").find(".card").click(function(e){
     row.append(nameTd,numberTd,priceTd,removeBtnTd);
     $("#order-card-body").prepend(row);
     $(this).unbind("click");
-});
+}
+$("#all-products").find(".card").click(cardHandler);
 
 let request;
 
@@ -50,9 +66,25 @@ $("#order-form").submit(function (event) {
             value:$inputs[i].value
         });
     }
+    if (products.length === 0){
+        $("#alert-msg").text("You Must Select Products");
+        // $(".alert");
+        $(".alert").show();
+        setTimeout(function() { $(".alert").hide(); }, 2000);
+        $inputs.prop("disabled", false);
+        return
+    }
 
     $inputs.prop("disabled", true);
     let $textarea = $form.find("textarea");
+    if ($textarea.val().trim().length === 0){
+        $("#alert-msg").text("You Must Add Note");
+        // $(".alert");
+        $(".alert").show();
+        setTimeout(function() { $(".alert").hide(); }, 2000);
+        $inputs.prop("disabled", false);
+        return
+    }
     let $room = $form.find("select");
     // let $total = $("#total").text();
     request = $.ajax({
