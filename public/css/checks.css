@@ -1,0 +1,13 @@
+.stretch {
+    background-color: darkgrey;
+    padding: 2px;
+    border-radius: 25%;
+}
+
+.details {
+    display: none;
+}
+
+#users {
+    width: 20rem;
+}

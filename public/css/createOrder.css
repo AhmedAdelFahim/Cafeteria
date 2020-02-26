@@ -41,7 +41,8 @@
 
 #formContainer {
     float: left;
-    background-color: rgb(219, 219, 219);
+    background-color: black;
+    color: white;
     margin-top: 5rem;
 }
 
@@ -56,7 +57,8 @@
 .title {
     display: flex;
     flex-direction: row;
-    background-color: rgba(191, 187, 255, 0.747);
+    background-color: black;
+    color: white;
 }
 
 .nav {
