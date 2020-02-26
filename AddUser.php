@@ -16,6 +16,10 @@
 
 </head>
 <body>
+    <?php
+        require_once ("utils/check_authorization.php");
+        checkAuthorization("admin");
+    ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,9 +36,9 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="">Users</a></li>
+                    <li><a href="AllUsers.php">Users</a></li>
                     <li><a href="#">Products</a></li>
-                    <li><a href="#">Orders</a></li>
+                    <li><a href="ordersAdmin.php">Orders</a></li>
                     <li><a href="#">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -43,50 +47,81 @@
 
     <div class="container-contact100">
     <div class="wrap-contact100">
-        <form action="user.php" method="post" enctype = "multipart/form-data" class="contact100-form validate-form">
+        <?php
+            $pageName = 'user.php';
+            if (isset($_GET['operation'])) {
+                if ($_GET['operation'] == 'update') {
+                    $pageName = 'updateUser.php?id='.$_GET['id'];
+
+                    require_once 'utils/DBConnection.php';
+                    $conn = database_connection\DBConnection::getInstance();
+
+                    $stat = $conn->prepare('SELECT * FROM users WHERE id = ?');
+
+                    $stat->execute([$_GET['id']]);
+
+                    foreach($stat->fetchAll() as $result) {
+                        $nameValue = $result['name'];
+                        $emailValue = $result['email'];
+                        $passValue = $result['password'];
+                        $roomNoValue = $result['roomNo'];
+                        $extValue = $result['ext'];
+                        $imgValue = $result['picture'];
+                    };
+
+                }
+            }
+        ?>
+        <form name="addForm" action=<?php echo $pageName; ?> method="post" enctype = "multipart/form-data" class="contact100-form validate-form">
 				<span class="contact100-form-title">
 					Add User
 				</span>
 
             <div class="wrap-input100 validate-input" data-validate="Name is required">
                 <span class="label-input100">Your Name</span>
-                <input class="input100" type="text" name="name" placeholder="Enter your name">
+                <input class="input100" type="text" name="name" placeholder="Enter your name" 
+                    <?php if(isset($nameValue)){ echo 'value='.$nameValue; } else {echo 'value=""';}?> >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                 <span class="label-input100">Email</span>
-                <input class="input100" type="text" name="email" placeholder="Enter your email addess">
+                <input class="input100" type="text" name="email" placeholder="Enter your email addess" 
+                    <?php if(isset($emailValue)){ echo 'value='.$emailValue; } else {echo 'value=""';}?> >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Password must be more than 8 character">
                 <span class="label-input100">Password</span>
-                <input class="input100" type="password" name="pass" placeholder="Enter your password">
+                <input class="input100" type="password" name="pass" placeholder="Enter your password" 
+                    <?php if(isset($passValue)){ echo 'value='.$passValue; } else {echo 'value=""';}?> >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Confirm password not match Password">
                 <span class="label-input100">Password</span>
-                <input class="input100" type="password" name="cpass" placeholder="Enter confirm password">
+                <input class="input100" type="password" name="cpass" placeholder="Enter confirm password" 
+                    <?php if(isset($passValue)){ echo 'value='.$passValue; } else {echo 'value=""';}?> >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Room Number is required">
                 <span class="label-input100">Room No.</span>
-                <input class="input100" type="text" name="roomNo" placeholder="Enter Room Number">
+                <input class="input100" type="text" name="roomNo" placeholder="Enter Room Number" 
+                    <?php if(isset($roomNoValue)){ echo 'value='.$roomNoValue; } else {echo 'value=""';}?> >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Ext. is required">
                 <span class="label-input100">Ext.</span>
-                <input class="input100" type="text" name="ext" placeholder="Enter Ext. Number">
+                <input class="input100" type="text" name="ext" placeholder="Enter Ext. Number" 
+                    <?php if(isset($extValue)){ echo 'value='.$extValue; } else {echo 'value=""';}?> >
                 <span class="focus-input100"></span>
             </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Profile Picture is required">
                 <span class="label-input100">Profile Picture</span>
-                <input class="input100" type="file" name = "profil" placeholder="Enter Ext. Number">
+                <input class="input100" type="file" name = "profil" placeholder="Enter Ext. Number" >
                 <span class="focus-input100"></span>
             </div>
 

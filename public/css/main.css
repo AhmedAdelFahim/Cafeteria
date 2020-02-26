@@ -97,6 +97,12 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 
+.limiter1 {
+  width: 100%;
+  margin: 0 auto;
+  margin-top:-70px;
+}
+
 .limiter {
   width: 100%;
   margin: 0 auto;
@@ -119,7 +125,7 @@ iframe {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 33px 30px;
+  padding: 10px 10px;
 }
 
 .wrap-table100 {
@@ -290,12 +296,26 @@ tbody tr:hover {
 
   tbody tr {
     font-size: 14px;
-  }
+}
 }
 
 @media (max-width: 576px) {
-  .container-table100 {
+.container-table100 {
     padding-left: 15px;
     padding-right: 15px;
-  }
+}
+}
+
+.addUserDiv  {
+    width: 100px;
+    height: 10px;
+    margin-left: 830px;
+    padding: 0px;
+}
+
+.addProductDiv  {
+    width: 100px;
+    height: 10px;
+    margin-left: 830px;
+    padding: 0px;
 }

@@ -1,7 +1,7 @@
 <html>
 <head>
-    <title>Login</title>
-<!--    <link href="public/css/login.css" rel="stylesheet">-->
+    <title>Add Category</title>
+    <!--    <link href="public/css/login.css" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -14,43 +14,24 @@
 </head>
 
 <body>
+<?php
+require_once ("utils/check_authorization.php");
+checkAuthorization("admin");
+?>
 <div class="container-contact100">
     <div class="wrap-contact100">
-<!--        <h1 class="headerName">Cafeteria</h1>-->
-        <form class="contact100-form validate-form" action="validateLogin.php" method="post" enctype="">
-                <?php
-                session_start();
-                if (isset($_SESSION['updateMsg'])) {
-                    echo '<br> <label style="color:green; margin-left: 400px;">'.$_SESSION['updateMsg'].'</label>';
-                    unset($_SESSION['updateMsg']);
-                    echo'<br>';
-                }
-                ?>
-				<span class="contact100-form-title">
-					Login
+        <!--        <h1 class="headerName">Cafeteria</h1>-->
+        <form class="contact100-form validate-form" action="insert_category.php" method="post" enctype="">
+            <span class="contact100-form-title">
+					Add Category
 				</span>
-
-
-
-            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                <span class="label-input100">Email</span>
-                <input class="input100" type="text" name="emailValue" placeholder="Enter your email addess">
+            <div class="wrap-input100 validate-input" data-validate = "Category is required">
+                <span class="label-input100">Category</span>
+                <input class="input100" type="text" name="category" placeholder="Enter Category name">
                 <span class="focus-input100"></span>
             </div>
 
-            <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                <span class="label-input100">Password</span>
-                <input class="input100" type="password" name="passValue" placeholder="Enter password">
-                <span class="focus-input100"></span>
-            </div>
 
-            <?php
-            if (isset($_SESSION['errorMsg'])) {
-                echo ' <label style="color:red; ">'.$_SESSION['errorMsg'].'</label>';
-                unset($_SESSION['errorMsg']);
-            }
-            ?>
-<!--            <label style="color:red;">''</label>-->
             <div class="container-contact100-form-btn">
                 <div class="wrap-contact100-form-btn">
                     <div class="contact100-form-bgbtn"></div>
@@ -72,7 +53,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
+<script src="public/js/add_category.js"></script>
 </body>
 </html>

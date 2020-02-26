@@ -36,6 +36,40 @@ a {
 #profile-picture {
     width: 4rem;
     height: 4rem;
-
+    margin-right: 0.75rem;
 }
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+    color:#000;
+}
+
+.notify-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right:5px;
+}
+
+#categories-container{
+    display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+}
+
 

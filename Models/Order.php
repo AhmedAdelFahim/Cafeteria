@@ -18,6 +18,8 @@ class Order {
         return $row;
     }
 
+
+
     function getLastOrder($userId){
         $query = "SELECT users_orders.total_price as total_price , users_orders.amount as amount, products.name as `name` ,products.picture as picture from users_orders ,products WHERE users_orders.user_id = ? AND users_orders.product_id = products.id AND users_orders.order_id = (SELECT MAX(users_orders.order_id) FROM users_orders WHERE users_orders.user_id = ? );";
         $stmt = self::$db->prepare($query);
@@ -40,6 +42,30 @@ class Order {
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $rows;
+    }
+    
+    function getUserOrders($userId,$fromDate,$toDate){
+        $result = [];
+        $stmt=self::$db->prepare("SELECT DISTINCT orders.id AS orderId,orders.created_at as order_date, orders.status as status , orders.total_price from users_orders ,orders WHERE users_orders.user_id = ? and orders.id = users_orders.order_id and orders.created_at <= ? and created_at>= ?");
+        $stmt->execute([$userId,$toDate,$fromDate]);
+        $orders = $stmt->fetchAll(PDO::FETCH_OBJ);
+//        var_dump($orders);
+        foreach ($orders as $order){
+            $resultObj = new stdClass();
+            $resultObj->orderId = $order->orderId;
+            $resultObj->order_date = $order->order_date;
+            $resultObj->total_price = $order->total_price;
+            $resultObj->status = $order->status;
+
+            $stmt3=self::$db->prepare("SELECT users_orders.total_price as total_price , users_orders.amount as amount, products.name as `name` ,products.picture as picture FROM users_orders,products WHERE products.id = users_orders.product_id and users_orders.order_id = ?");
+            $stmt3->execute([$order->orderId]);
+            $productsData = $stmt3->fetchAll(PDO::FETCH_OBJ);
+            $resultObj->products = $productsData;
+//            echo "\n";
+            array_push($result,$resultObj);
+        }
+
+        return $result;
     }
 
     function getWaitedOrders(){
