@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Product </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="public/css/createOrder.css">
 </head>
@@ -13,8 +14,12 @@
         require_once("Models/Product.php"); 
         require_once("Models/User.php");
         require_once("Controllers/ordersController.php");
+        require_once ("utils/check_authorization.php");
+        checkAuthorization("admin");
+
         $product = new Product;
         $user = new User;
+        $userId = $_SESSION["userId"];
 
         $products = $product->All();
         $users = $user->All();
@@ -22,33 +27,44 @@
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $order = new ordersController;
-
+            
             if(isset($_POST['products'])){
-                $order->adminSaveOrder($_POST['products'], $_POST['user'], $_POST['notes'], $_POST['price'] );
+                $order->adminSaveOrder($_POST['products'], $_POST['user'], $_POST['notes'], $_POST['price'], $_POST['quantity'] );
             }else{
                 $error = "Please select a product";
             }
         }
     ?>
     <div id="container">
-        <div class="title">
-            <div class="menu">
-                <table class="nav">
-                    <td> <a href="Home.php?">Home | </a></td>
-                    <td> <a href="Products.php?">Products | </a></td>
-                    <td> <a href="Users.php?">Users | </a></td>
-                    <td> <a href="ManualOrders.php?">Manual orders | </a></td>
-                    <td> <a href="Checks.php?">Checks </a></td>
-                </table>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div id="profile-data" class="profilePic">
+                        <img id="profile" src="public/img/admin.png"/>
+                        <a href="">Admin</a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="active"><a href="createOrder.php">Home</a></li>
+                        <li><a href="AllUsers.php">Users</a></li>
+                        <li><a href="allProduct.php">Products</a></li>
+                        <li><a href="ordersAdmin.php">Orders</a></li>
+                        <li><a href="checks.php">Checks</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
-            <div class="profilePic">
-                <a href=""><img src="Assets/admin.png"/>Admin</a>
-            </div>
-        </div>
+        </nav>
         <div id="bodyContainer">
             <div id="formContainer">
                 <form id="form" class="addproduct" method="POST" action="">
                     <table class="notes" id="notes">
+                        <input type="hidden" name="price" id="total_price">
                         <tr>
 
                             <td> Notes </td>
@@ -125,7 +141,7 @@
                         ?>
                         <div class="product selectProduct" data-id = "<? echo $product->id; ?>" data-name="<? echo $product->name; ?>" data-price="<? echo $product->price; ?>">
                             <!-- <a href="createOrder.php?status=set&id=<?php echo $product->id; ?>"><img src="Assets/coffee.png"/></a> -->
-                            <img src="Assets/coffee.png"/>
+                            <img src="<? if(empty($product->picture)){ ?>Assets/coffee.png<? }else{ echo $product->picture; } ?>"/>
                             <h4><?php echo $product->name; ?></h4>
                         </div>
                         <?php
@@ -144,7 +160,7 @@
         }
     </style>
     <script src="https://kit.fontawesome.com/20351afc5f.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="public/JS/createOrder.js"></script>
+    <script type="text/javascript" src="public/js/createOrder.js"></script>
 </body>
 
 </html>

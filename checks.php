@@ -20,6 +20,12 @@
     $order = new Order();
     $users = new User();
     $eachUserData = $order->getDistinctUsersData();
+
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
     ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -36,11 +42,11 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="">Users</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Orders</a></li>
-                    <li><a href="#">Checks</a></li>
+                    <li class="active"><a href="createOrder.php">Home</a></li>
+                    <li><a href="AllUsers.php">Users</a></li>
+                    <li><a href="allProduct.php">Products</a></li>
+                    <li><a href="ordersAdmin.php">Orders</a></li>
+                    <li><a href="checks.php">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -95,7 +101,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            foreach($order->getUserOrders() as $orders){
+                                            foreach($order->getEachUserOrders() as $orders){
                                         ?>
                                         <tr>
                                             <td><?php print date("gA D F", strtotime($orders->created_at)); ?></td>
@@ -156,7 +162,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            foreach($order->getUserOrders() as $orders){
+                                            foreach($order->getEachUserOrders() as $orders){
                                         ?>
                                         <tr>
                                             <td><?php print date("gA D F", strtotime($orders->created_at)); ?></td>
@@ -202,6 +208,30 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="pag">
+            <ul class="pagination">
+                <li><a href="?pageno=1">First</a></li>
+                <li class="<?php if ($pageno <= 1) {
+                        echo 'disabled';
+                    } ?>">
+                    <a href="<?php if ($pageno <= 1) {
+                        echo '#';
+                    } else {
+                        echo '?pageno='.($pageno - 1);
+                    } ?>">Prev</a>
+                </li>
+                <li class="<?php if ($pageno >= $total_pages) {
+                    echo 'disabled';
+                    } ?>">
+                    <a href="<?php if ($pageno >= $total_pages) {
+                        echo '#';
+                    } else {
+                        echo '?pageno='.($pageno + 1);
+                    } ?>">Next</a>
+                </li>
+                <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+            </ul>
         </div>
     </div>
     </div>

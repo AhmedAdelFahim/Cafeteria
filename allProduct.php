@@ -40,9 +40,9 @@
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="createOrder.php">Home</a></li>
                     <li><a href="AllUsers.php">Users</a></li>
-                    <li><a href="#">Products</a></li>
+                    <li><a href="allProduct.php">Products</a></li>
                     <li><a href="ordersAdmin.php">Orders</a></li>
-                    <li><a href="#">Checks</a></li>
+                    <li><a href="checks.php">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -77,7 +77,7 @@
                                         echo "<td>".$data['price']."</td>";
                                         echo "<td><img src=".$data['picture']." width='50px' height='50px' alt='img'></td>";
                                         echo "<td><a href='AddProduct.php?operation=update&&id=$ID' class='update'> Edit | </a>
-                                                <a href='deleteProduct.php' class='delete'>Delete</a></td>";
+                                                <a href='deleteProduct.php?id=$ID' class='delete'>Delete</a></td>";
                                         echo "</tr>";
                                     }
                                 ?>   

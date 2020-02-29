@@ -39,9 +39,9 @@
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="createOrder.php">Home</a></li>
                     <li><a href="AllUsers.php">Users</a></li>
-                    <li><a href="#">Products</a></li>
+                    <li><a href="allProduct.php">Products</a></li>
                     <li><a href="ordersAdmin.php">Orders</a></li>
-                    <li><a href="#">Checks</a></li>
+                    <li><a href="checks.php">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

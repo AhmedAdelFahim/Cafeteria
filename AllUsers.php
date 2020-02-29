@@ -47,9 +47,9 @@
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="createOrder.php">Home</a></li>
                     <li><a href="AllUsers.php">Users</a></li>
-                    <li><a href="#">Products</a></li>
+                    <li><a href="allProduct.php">Products</a></li>
                     <li><a href="ordersAdmin.php">Orders</a></li>
-                    <li><a href="#">Checks</a></li>
+                    <li><a href="checks.php">Checks</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -98,7 +98,11 @@
                             $ID = $row['id'];
                             echo '<td>'.$row['name'].'</td>';
                             echo '<td>'.$row['roomNo'].'</td>';
-                            echo '<td><img src="'.$row['picture'].'" style="width:50px; height:50px;"></td>';
+                            if(!empty($row['picture']))
+                                echo '<td><img src="'.$row['picture'].'" style="width:50px; height:50px;"></td>';
+                            else
+                                echo '<td><img src="public/img/admin.png" style="width:50px; height:50px;"></td>';
+
                             echo '<td>'.$row['ext'].'</td>';
                             echo "<td><a href='AddUser.php?operation=update&&id=$ID'> update | </a>
                                 <a href='deleteUser.php?operation=delete&&id=$ID'> delete </a></td></tr>";
