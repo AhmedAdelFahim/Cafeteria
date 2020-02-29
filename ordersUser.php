@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div id="profile-data">
-                    <img id="profile-picture" src="<?php echo $userData->picture; ?>"/>
+                    <img id="profile-picture" src="<?php if(empty($userData->picture)) { echo "Assets/admin.png"; } else { echo $userData->picture; } ?>"/>
                     <a href=""><?php echo $userData->name; ?></a>
                 </div>
             </div>
