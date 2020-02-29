@@ -82,6 +82,7 @@ class Order {
             $stmt2=self::$db->prepare("SELECT DISTINCT users.name as `name` ,users.roomNo as room , users.ext FROM users_orders,users WHERE users_orders.user_id = users.id AND users_orders.order_id = ?");
             $stmt2->execute([$order->id]);
             $userData = $stmt2->fetchAll(PDO::FETCH_OBJ);
+            if(count($userData)==0) continue;
 //            var_dump($userData);
             $resultObj->name = $userData[0]->name;
             $resultObj->room = $userData[0]->room;
