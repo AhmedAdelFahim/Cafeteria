@@ -40,7 +40,7 @@ class ordersController {
         }
     }
 
-    public function adminSaveOrder($products_id, $user_id, $notes, $prices)
+    public function adminSaveOrder($products_id, $user_id, $notes, $prices, $quantity)
     {
         if(count($products_id) == 0){
             return false;
@@ -48,9 +48,7 @@ class ordersController {
 
         $order = new Order;
         
-        foreach($products_id as $k => $product_id){
-            $order->insert(NULL, $product_id , $user_id , $prices[$k] , $notes);
-        }
+        $order->insert(NULL, $products_id , $user_id , $prices , $notes , $quantity);
         
         return true;
     }

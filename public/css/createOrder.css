@@ -26,8 +26,8 @@
 }
 
 .profilePic img {
-    height: 2rem;
-    width: 2rem;
+    height: 4rem;
+    width: 4rem;
 }
 
 .profilePic img:hover {
@@ -41,9 +41,11 @@
 
 #formContainer {
     float: left;
-    background-color: black;
-    color: white;
-    margin-top: 5rem;
+    background-color: rgb(223, 223, 223);
+    color: black;
+    margin-top: 10rem;
+    margin-left: 2rem;
+    padding: 1rem;
 }
 
 #price {
@@ -143,7 +145,7 @@
 #selectedProds {
     display: flex;
     flex-direction: row;
-    height: 1.5rem;
+    height: 3rem;
 }
 
 #selectedProds span {

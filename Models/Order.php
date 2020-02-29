@@ -43,7 +43,7 @@ class Order {
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $rows;
     }
-    
+
     function getUserOrders($userId,$fromDate,$toDate){
         $result = [];
         $stmt=self::$db->prepare("SELECT DISTINCT orders.id AS orderId,orders.created_at as order_date, orders.status as status , orders.total_price from users_orders ,orders WHERE users_orders.user_id = ? and orders.id = users_orders.order_id and orders.created_at <= ? and created_at>= ?");
@@ -99,17 +99,48 @@ class Order {
         return $result;
     }
 
-    function insert($status = 0 , $product_id , $user_id , $total_price , $notes)
+    function insert($status = 0 , $products , $user_id , $total_price , $notes , $quantity)
     {
-        $query = "INSERT INTO orders (`status`, `product_id`, `user_id`, `price`, `notes`, `created_at`, `updated_at`) VALUES ( ? , ? , ? , ? , ? , ? , ?);";
-        $stmt = self::$db->prepare($query);
-        $stmt->execute([$status,$product_id,$user_id,$total_price,$notes,date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
+        // $query = "INSERT INTO orders (`status`, `total_price`, `notes`, `created_at`, `updated_at`) VALUES ( ? , ? , ? , ? , ? );";
+        // $stmt = self::$db->prepare($query);
+        // $stmt->execute([$status,$total_price,$notes,date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
 
+        // $result = $stmt->rowCount();
+
+        // if($result > 0){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
+        $db = \database_connection\DBConnection::getInstance();
+    //    $db->beginTransaction();
+        $query = "INSERT INTO orders (`status`, `total_price`, `notes`, `created_at`, `updated_at`) VALUES ( ? , ? , ? , ? , ? );";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$status,$total_price,$notes,date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
         $result = $stmt->rowCount();
 
         if($result > 0){
-            return true;
+            $orderId = $db->lastInsertId();
+            $userId=$_SESSION['userId'];                                      //static
+            $query = "INSERT INTO users_orders (`user_id`, `product_id`, `order_id`,`total_price`,`amount`) VALUES ( ? , ? , ? , ? , ? );";
+            $stmt = $db->prepare($query);
+            foreach ($products as $key => $product){
+                    $stmt2=$db->prepare("Select `price` FROM products where id=?");
+                    $stmt2->execute([$product]);
+                    $price = $stmt2->fetchAll(PDO::FETCH_OBJ)[0]->price;
+                    $stmt->execute([$userId,$product,$orderId,$total_price,$quantity[$key]]);
+            }
+            $result = $stmt->rowCount();
+            if($result>0)
+            {
+    //            $db.commit();
+                return true;
+            }else{
+    //            $db->rollBack();
+                return false;
+            }
         }else{
+    //        $db->rollBack();
             return false;
         }
     }
@@ -133,7 +164,7 @@ class Order {
         return $orderDate;
     }
 
-    function getUserOrders()
+    function getEachUserOrders()
     {
         $ordersId = $this->getDistinctCheckUser($this->user_id);
         $place_holders = implode(',', array_fill(0, count($ordersId), '?'));

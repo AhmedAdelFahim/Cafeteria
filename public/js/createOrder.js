@@ -106,5 +106,7 @@ for (let product of products) {
         }
 
         totalPrice.innerHTML = "EGP " + total;
+
+        document.getElementById('total_price').value = total;
     });
 }
