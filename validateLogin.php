@@ -48,6 +48,9 @@ try {
             header('location:Login.php');
         }
     }
+    $_SESSION['errorMsg'] = '*Invalid Email OR Password!';
+       
+    header('location:Login.php');
 } catch (Exception $e) {
     echo $e->getMessage();
 }
