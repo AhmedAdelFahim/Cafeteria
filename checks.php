@@ -63,9 +63,11 @@
                                 <option disabled selected>User</option>
                                 <?php
                                     foreach($users->All() as $user) {
+                                        if($user->privilege == "user"){
                                 ?>
                                 <option value="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
                                 <?php
+                                        }
                                     }
                                 ?>
                             </select>
