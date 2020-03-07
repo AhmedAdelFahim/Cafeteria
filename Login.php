@@ -21,7 +21,7 @@
                 <?php
                 session_start();
                 if (isset($_SESSION['updateMsg'])) {
-                    echo '<br> <label style="color:green; margin-left: 400px;">'.$_SESSION['updateMsg'].'</label>';
+                    echo '<br> <label style="color:green; ">'.$_SESSION['updateMsg'].'</label>';
                     unset($_SESSION['updateMsg']);
                     echo'<br>';
                 }
@@ -63,6 +63,7 @@
                 </div>
             </div>
         </form>
+        <a href="ForgetPassword.php"> ForgetPassword </a>
     </div>
 </div>
 

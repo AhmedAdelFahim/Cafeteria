@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    header("Location: AddUser.php");
+    header("Location: AllUsers.php");
 }
 if ($errName == '' && $errEmail == '' && $errPasswordTxt == '' && $errCPassword == '' && $errRoom == '' && $errProfileImg == '') {
     

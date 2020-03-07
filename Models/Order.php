@@ -70,8 +70,8 @@ class Order {
 
     function getWaitedOrders(){
         $result = [];
-        $stmt=self::$db->prepare("SELECT id,created_at as order_date,total_price FROM `orders` WHERE `status` = ?");
-        $stmt->execute([0]);
+        $stmt=self::$db->prepare("SELECT id,created_at as order_date,total_price,status FROM `orders` WHERE `status` = ? or `status` = ? or `status` = ?");
+        $stmt->execute([0,1,2]);
         $orders = $stmt->fetchAll(PDO::FETCH_OBJ);
 //        var_dump($row);
         foreach($orders as $order)
@@ -79,6 +79,8 @@ class Order {
             $resultObj = new stdClass();
             $resultObj->order_date = $order->order_date;
             $resultObj->total_price = $order->total_price;
+            $resultObj->id = $order->id;
+            $resultObj->status = $order->status;
             $stmt2=self::$db->prepare("SELECT DISTINCT users.name as `name` ,users.roomNo as room , users.ext FROM users_orders,users WHERE users_orders.user_id = users.id AND users_orders.order_id = ?");
             $stmt2->execute([$order->id]);
             $userData = $stmt2->fetchAll(PDO::FETCH_OBJ);
