@@ -33,6 +33,8 @@
             }else{
                 $error = "Please select a product";
             }
+
+            header('Location: ordersAdmin.php');
         }
     ?>
     <div id="container">
