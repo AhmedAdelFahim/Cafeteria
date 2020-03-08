@@ -64,13 +64,13 @@
             showValidate(ext);
             check=false;
         }
-        if(profilePicture.val().trim().length === 0)
+       /* if(profilePicture.val().trim().length === 0)
         {
             showValidate(profilePicture);
             check=false;
 
         }
-
+*/
         return check;
     });
 

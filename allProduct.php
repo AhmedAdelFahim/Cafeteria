@@ -75,7 +75,11 @@
                                         echo "<tr>";
                                         echo "<td>".$data['name']."</td> ";
                                         echo "<td>".$data['price']."</td>";
-                                        echo "<td><img src=".$data['picture']." width='50px' height='50px' alt='img'></td>";
+                                        if(!empty($data['picture']))
+                                            echo '<td><img src="'.$data['picture'].'" style="width:50px; height:50px;"></td>';
+                                        else
+                                            echo '<td><img src="public/img/tea.png" style="width:50px; height:50px;"></td>';
+//                                        echo "<td><img src=".$data['picture']." width='50px' height='50px' alt='img'></td>";
                                         echo "<td><a href='AddProduct.php?operation=update&&id=$ID' class='update'> Edit | </a>
                                                 <a href='deleteProduct.php?id=$ID' class='delete'>Delete</a></td>";
                                         echo "</tr>";

@@ -124,9 +124,11 @@
                                     <select name="user" id="allUsers">
                                         <?php
                                             foreach($users as $user) {
+                                                if($user->privilege == 'user'){
                                         ?>
                                         <option value="<?php echo $user->id; ?>"><?php echo $user->name; ?></option>
                                         <?php
+                                                }
                                             }
                                         ?>
                                     </select>    

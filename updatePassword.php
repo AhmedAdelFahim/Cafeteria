@@ -8,9 +8,13 @@ if (!isset($_SESSION['userEmail'])) {
 }
 
 try {
+    $options = [
+        'cost' => 12
+      ];
+    $hash = password_hash($_POST['passValue'], PASSWORD_BCRYPT, $options);
     $conn = database_connection\DBConnection::getInstance();
     $stmt = $conn->prepare('UPDATE users SET password = ? WHERE email = ?');
-    $stmt->execute([$_POST['passValue'], $_SESSION['userEmail']]);
+    $stmt->execute([$hash, $_SESSION['userEmail']]);
 
     //send confirmation email to registered person to activate his account
     $to_email = $_SESSION['userEmail'];

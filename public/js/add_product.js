@@ -45,10 +45,10 @@ $(".add-category").click(function () {
             showValidate(category);
             check=false;
         }
-        if (productPicture.val().trim().length === 0) {
+       /* if (productPicture.val().trim().length === 0) {
             showValidate(productPicture);
             check=false;
-        }
+        }*/
 
         return check;
     });

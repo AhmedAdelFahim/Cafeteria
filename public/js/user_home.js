@@ -88,6 +88,10 @@ $("#order-form").submit(function (event) {
     let $room = $form.find("select");
     // let $total = $("#total").text();
     request = $.ajax({
+        header:{
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method'
+        },
         url: "http://localhost/Cafeteria/insertOrder.php",
         type: "post",
         data:{products: JSON.stringify(products),
