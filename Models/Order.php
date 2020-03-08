@@ -37,7 +37,7 @@ class Order {
 
     function getDistinctUsersData() 
     {
-        $query = "SELECT DISTINCT `user_id`, sum(amount) as amount FROM users_orders";
+        $query = "SELECT DISTINCT `user_id`, sum(amount) as amount FROM users_orders GROUP BY user_id";
         $stmt = self::$db->prepare($query);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -100,48 +100,33 @@ class Order {
         return $result;
     }
 
-    function insert($status = 0 , $products , $user_id , $total_price , $notes , $quantity)
+    function insert($status , $products , $user_id , $total_price , $notes , $quantity)
     {
-        // $query = "INSERT INTO orders (`status`, `total_price`, `notes`, `created_at`, `updated_at`) VALUES ( ? , ? , ? , ? , ? );";
-        // $stmt = self::$db->prepare($query);
-        // $stmt->execute([$status,$total_price,$notes,date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
-
-        // $result = $stmt->rowCount();
-
-        // if($result > 0){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
         $db = \database_connection\DBConnection::getInstance();
-    //    $db->beginTransaction();
+    
         $query = "INSERT INTO orders (`status`, `total_price`, `notes`, `created_at`, `updated_at`) VALUES ( ? , ? , ? , ? , ? );";
         $stmt = $db->prepare($query);
-        $stmt->execute([$status,$total_price,$notes,date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
+        $stmt->execute([0,$total_price,$notes,date("Y-m-d H:i:s"),date("Y-m-d H:i:s")]);
         $result = $stmt->rowCount();
 
         if($result > 0){
-            $orderId = $db->lastInsertId();
-            $userId=$_SESSION['userId'];                                      //static
+            $orderId = $db->lastInsertId();                                     //static
             $query = "INSERT INTO users_orders (`user_id`, `product_id`, `order_id`,`total_price`,`amount`) VALUES ( ? , ? , ? , ? , ? );";
             $stmt = $db->prepare($query);
             foreach ($products as $key => $product){
-                    $stmt2=$db->prepare("Select `price` FROM products where id=?");
-                    $stmt2->execute([$product]);
-                    $price = $stmt2->fetchAll(PDO::FETCH_OBJ)[0]->price;
-                    $stmt->execute([$userId,$product,$orderId,$total_price,$quantity[$key]]);
+                $stmt2=$db->prepare("Select `price` FROM products where id=?");
+                $stmt2->execute([$product]);
+                $price = $stmt2->fetchAll(PDO::FETCH_OBJ)[0]->price;
+                $stmt->execute([$user_id,$product,$orderId,$total_price,$quantity[$key]]);
             }
             $result = $stmt->rowCount();
             if($result>0)
             {
-    //            $db.commit();
                 return true;
             }else{
-    //            $db->rollBack();
                 return false;
             }
         }else{
-    //        $db->rollBack();
             return false;
         }
     }
