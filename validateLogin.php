@@ -21,9 +21,14 @@ try {
     $stmt->execute([$_SESSION['userEmail']]);
 
     $trueData = 0;
+    $users = $stmt->fetchAll() ;
+    if(count($users) == 0){
+        $_SESSION['errorMsg'] = '*Invalid Email Address!';
+        header("Location: Login.php");
+    }
 
-    foreach ($stmt->fetchAll() as $row) {
-        $hash = $row[password];
+    foreach ($users as $row) {
+        $hash = $row["password"];
 
         if (password_verify($userPass, $hash)) {
             if ($row['privilege'] == 'user') {
@@ -45,12 +50,10 @@ try {
         } else {
             $_SESSION['errorMsg'] = '*Invalid Email OR Password!';
        
-            header('location:Login.php');
+            header("Location: Login.php");
         }
     }
-    $_SESSION['errorMsg'] = '*Invalid Email OR Password!';
-       
-    header('location:Login.php');
+    echo $verify;
 } catch (Exception $e) {
     echo $e->getMessage();
 }
