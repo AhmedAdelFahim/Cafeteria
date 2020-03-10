@@ -1,8 +1,11 @@
-let action = document.querySelector(".action");
+let action = document.getElementsByClassName("action");
+console.log(action.length)
+for(let i=0;i<action.length;++i){
 
-action.addEventListener('change',(e)=>{
-    // console.log(e.target.value);
-    // console.log(action.id);
+    action[i].addEventListener('change',(e)=>{
+        console.log(e.target.value);
+        console.log(action.id);
 
-    window.location.href= `changeState.php?id=${action.id}&status=${e.target.value}`
-});
+        window.location.href= `changeState.php?id=${action[i].id}&status=${e.target.value}`
+    });
+}
